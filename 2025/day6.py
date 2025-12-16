@@ -21,16 +21,20 @@ for line in input_arr[:-1]:
     seperator_candidates.append(spaces)
 
 seperators = set.intersection(*seperator_candidates)
-seperators = seperators | {-1, len(input_arr[0])}
+seperators = sorted(seperators | {-1, len(input_arr[0])})
 matrix = []
 for line in input_arr[:-1]:
     nums = []
     for i in range(len(seperators) - 1):
-        nums.append(line[seperators[i] : seperators[i + 1]])
-    print(nums)
+        lower, upper = seperators[i] + 1, seperators[i + 1]
+        nums.append(line[lower:upper])
     matrix.append(nums)
 
-print(matrix)
+transpose = [
+    [matrix[r][c] for r in range(len(input_arr[:-1]))] for c in range(len(input_arr[0]))
+]
+
+print(transpose)
 # rows = len(input_arr)
 # cols = len([num for num in input_arr[0].split(" ") if num.isdigit()])
 # # print(rows, cols)
