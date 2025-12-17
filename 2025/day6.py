@@ -22,6 +22,7 @@ for line in input_arr[:-1]:
             spaces.add(idx)
     seperator_candidates.append(spaces)
 
+# columns with only withespace seperate numbers
 seperators = set.intersection(*seperator_candidates)
 seperators = sorted(seperators | {-1, longest_lines})
 matrix = []
@@ -47,7 +48,7 @@ for row in transpose:
                 new_nums[idx] += symbol
     # nums.append(new_nums)
     nums.append([num for num in new_nums if num])
-print(nums)
+# print(nums)
 
 total = 0
 for idx, op in enumerate(ops):
